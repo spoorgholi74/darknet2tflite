@@ -70,10 +70,12 @@ if __name__ == '__main__':
   # NxHxWxC, H:1, W:2
   height = input_details[0]['shape'][1]
   width = input_details[0]['shape'][2]
+  print(height, ' * ', width)
   img = Image.open(args.image).resize((width, height))
 
   # add N dim
   input_data = np.expand_dims(img, axis=0)
+  print('Shape is ', input_data.shape)
 
   if floating_model:
     input_data = (np.float32(input_data) - args.input_mean) / args.input_std
@@ -83,6 +85,7 @@ if __name__ == '__main__':
   interpreter.invoke()
 
   output_data = interpreter.get_tensor(output_details[0]['index'])
+  print('output is ', output_data)
   results = np.squeeze(output_data)
 
   top_k = results.argsort()[-5:][::-1]
