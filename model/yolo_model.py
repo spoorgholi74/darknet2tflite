@@ -42,6 +42,8 @@ class YOLO:
             box_class_probs: ndarray (N, N, 3, 80), class probs for per box.
         """
         grid_h, grid_w, num_boxes = map(int, out.shape[1: 4])
+        print('After map')
+        print('grid_h', grid_h, 'grid_w', grid_w,'num_boxes', num_boxes)
 
         anchors = [anchors[i] for i in mask]
         anchors_tensor = np.array(anchors).reshape(1, 1, len(anchors), 2)
@@ -196,7 +198,7 @@ class YOLO:
 
         return boxes, classes, scores
 
-    def predict(self, image, shape):
+    def predict(self, image, shape, outs=None):
         """Detect the objects with yolo.
 
         # Arguments
@@ -209,8 +211,11 @@ class YOLO:
             scores: ndarray, scores of objects.
         """
 
-        outs = self._yolo.predict(image)
-        print('outs is ', outs)
+        #outs = self._yolo.predict(image)
+        #print('output is = ', outs)
+        #from keras out is list float32type but from the tflite was an array
+
+        #print('outs shape is ', outs.shape)
         boxes, classes, scores = self._yolo_out(outs, shape)
 
         return boxes, classes, scores
