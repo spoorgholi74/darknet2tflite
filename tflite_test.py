@@ -22,6 +22,8 @@ import argparse
 import numpy as np
 
 from PIL import Image
+from model.yolo_model import *
+from demo import *
 
 import tensorflow as tf # TF2
 
@@ -91,10 +93,20 @@ if __name__ == '__main__':
   top_k = results.argsort()[-5:][::-1]
   print('top_k = ', top_k)
   labels = load_labels(args.label_file)
-  print(labels)
+  boxes, classes, scores = _yolo_out(results, image.shape)
+  print(boxes)
+
+  if boxes is not None:
+        draw(image, boxes, scores, classes, labels)
+
+  cv2.imwrite('images/res/', image)
+
+
+  '''
   for i in top_k:
     if floating_model:
       print(results[i])
       print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
     else:
       print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+  '''
