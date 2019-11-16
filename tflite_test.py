@@ -94,6 +94,7 @@ if __name__ == '__main__':
   print(labels)
   for i in top_k:
     if floating_model:
+      print(results[i])
       print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
     else:
       print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
