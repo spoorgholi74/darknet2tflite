@@ -16,14 +16,14 @@ def process_image(img):
     # Returns
         image: ndarray(64, 64, 3), processed image.
     """
-    cv2.imshow('before resize', img)
+    #cv2.imshow('before resize', img)
     image = cv2.resize(img, (416, 416),
                        interpolation=cv2.INTER_CUBIC)
     image = np.array(image, dtype='float32')
     image /= 255.
-    cv2.imshow('after expand', image)
+    #cv2.imshow('after expand', image)
     image = np.expand_dims(image, axis=0)
-    cv2.waitKey(0)
+    #cv2.waitKey(0)
 
     return image
 
@@ -95,6 +95,7 @@ def detect_image(image, yolo, all_classes):
         image: processed image.
     """
     pimage = process_image(image)
+    print("processed image type is :", type(pimage), "with shape:", pimage.shape)
 
     start = time.time()
     boxes, classes, scores = yolo.predict(pimage, image.shape)
