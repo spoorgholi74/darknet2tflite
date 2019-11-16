@@ -85,11 +85,13 @@ if __name__ == '__main__':
   interpreter.invoke()
 
   output_data = interpreter.get_tensor(output_details[0]['index'])
-  print('output is ', output_data)
+  #print('output is ', output_data)
   results = np.squeeze(output_data)
 
   top_k = results.argsort()[-5:][::-1]
+  print('top_k = ', top_k)
   labels = load_labels(args.label_file)
+  print(labels)
   for i in top_k:
     if floating_model:
       print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
