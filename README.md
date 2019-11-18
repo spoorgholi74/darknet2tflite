@@ -1,7 +1,5 @@
-# YOLOv3
-Keras(TF backend) implementation of yolo v3 objects detection. 
-
-According to the paper [YOLOv3: An Incremental Improvement](https://pjreddie.com/media/files/papers/YOLOv3.pdf).
+# YOLOv3 dark2lite implementation
+- [Adopted from](https://github.com/xiaochus/YOLOv3). 
 
 ## Requirement
 - OpenCV 3.4
@@ -11,36 +9,19 @@ According to the paper [YOLOv3: An Incremental Improvement](https://pjreddie.com
 
 ## Quick start
 
-- Download official [yolov3.weights](https://pjreddie.com/media/files/yolov3.weights) and put it on top floder of project.
+- Copy your weight files and the config file in the root directory.
 
-- Run the follow command to convert darknet weight file to keras h5 file. The `yad2k.py` was modified from [allanzelener/YAD2K](https://github.com/allanzelener/YAD2K).
+- The following command will translate the model to keras .h5 model.
 ```
 python yad2k.py cfg\yolo.cfg yolov3.weights data\yolo.h5
 ```
+- Copy the .h5 model to the data/ directory to be able to run the demo.
 
-- run follow command to show the demo. The result can be found in `images\res\` floder.
+- run follow command to show the keras demo. The result can be found in `images\res\` floder.
 ```
-python demo.py
+python demo_keras.py
 ```
-
-## Demo result
-
-It can be seen that yolo v3 has a better classification ability than yolo v2.
-
-<img width="400" height="350" src="/images/res/dog.jpg"/><img width="400" height="350" src="/images/res/person.jpg"/>
-
-## TODO
-
-- Train the model.
-
-## Reference
-
-	@article{YOLOv3,  
-	  title={YOLOv3: An Incremental Improvement},  
-	  author={J Redmon, A Farhadi },
-	  year={2018}
-
-
-
-## Copyright
-See [LICENSE](LICENSE) for details.
+- run follow command to show the tflite demo.
+```
+python demo_tflite.py
+```

@@ -1,5 +1,3 @@
-"""Demo for use yolo v3
-"""
 import os
 import time
 import cv2
