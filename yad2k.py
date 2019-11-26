@@ -1,10 +1,3 @@
-#! /usr/bin/env python
-"""
-Reads Darknet53 config and weights and creates Keras model with TF backend.
-
-Currently only supports layers in Darknet53 config.
-"""
-
 import argparse
 import configparser
 import io
